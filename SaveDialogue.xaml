@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="AppxPatch.SaveDialogue"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppxPatch"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="true"
+    xmlns:fluent="using:Fluent.Icons"
+    xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
+    MinWidth="1530"
+>
+
+    <Grid>
+        
+        <Border x:Name="AppTitleBar"
+                IsHitTestVisible="True"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Height="40"
+                Canvas.ZIndex="1" 
+                Margin="48,8,0,0">
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="AppFontIcon"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center"
+                    Source="Assets/Square44x44Logo.png" 
+                    Width="16" 
+                    Height="16"/>
+                <TextBlock x:Name="AppTitle"
+                    Text="Appx Patcher"
+                    VerticalAlignment="Center"
+                    Margin="12, 0, 0, 0"
+                    Style="{StaticResource CaptionTextBlockStyle}" />
+            </StackPanel>
+        </Border>
+        <WebView x:Name="BloomWebView" DefaultBackgroundColor="Transparent" Source="ms-appx-web:///Bloom.html"/>
+        <Rectangle Fill="{ThemeResource higherOpacityAcrylic}" Margin="100,100,100,100" MinWidth="1000" MinHeight="500" d:LayoutOverrides="Width, Height, LeftPosition, RightPosition, TopPosition, BottomPosition" RadiusX="15" RadiusY="15"/>
+        <TextBlock x:Name="textBlock" Margin="173,145,864,750" TextWrapping="Wrap" Text="Patch an app" Foreground="White" FontSize="32" FontWeight="SemiBold" SelectionChanged="textBlock_SelectionChanged"/>
+        <ProgressBar VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment, LeftPosition, RightPosition" Grid.Column="0" Grid.ColumnSpan="1" Value="3" Maximum="3" Background="#00000000" Foreground="{ThemeResource SystemAccentColorLight1}" Height="20"/>
+        <Border>
+            <!--AnimatedVisualPlayer with AutoPlay-->
+            <muxc:AnimatedVisualPlayer AutoPlay="False" x:Name="LottiePlayer" Margin="537,358,537,358">
+                <!--LottieVisualSource with JSON UriSource-->
+                <lottie:LottieVisualSource x:Name="LottieJsonSource" UriSource="ms-appx:///Visuals/confetti.json"/>
+            </muxc:AnimatedVisualPlayer>
+        </Border>
+        <Button x:Name="button"  Content="Save" VerticalAlignment="Center" d:LayoutOverrides="Width" Click="button_Click" HorizontalAlignment="Center" FontSize="14" />
+    </Grid>
+</Page>

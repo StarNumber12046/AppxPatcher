@@ -1,0 +1,43 @@
+﻿<Application
+    x:Class="AppxPatch.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+    <Application.Resources>
+        <controls:XamlControlsResources>
+            <controls:XamlControlsResources.MergedDictionaries>
+                <ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Default">
+                            <AcrylicBrush x:Key="higherOpacityAcrylic"
+                          BackgroundSource="Backdrop"
+                          TintColor="Black"
+                          TintOpacity="0.9"
+                          FallbackColor="{StaticResource SystemAccentColor}"/>
+                        </ResourceDictionary>
+
+
+
+                        <ResourceDictionary x:Key="HighContrast">
+                            <SolidColorBrush x:Key="higherOpacityAcrylic"
+                             Color="{ThemeResource SystemColorWindowColor}"/>
+                        </ResourceDictionary>
+
+                        <ResourceDictionary x:Key="Light">
+                            <AcrylicBrush x:Key="higherOpacityAcrylic"
+                          BackgroundSource="Backdrop"
+                          TintColor="Black"
+                          TintOpacity="0.4"
+                          FallbackColor="{StaticResource SystemAccentColor}"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </controls:XamlControlsResources.MergedDictionaries>
+        </controls:XamlControlsResources>
+
+    </Application.Resources>
+
+</Application>

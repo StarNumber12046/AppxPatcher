@@ -3,3 +3,8 @@ obj/*
 .vs
 **/obj
 **/bin
+*.pfx
+*.appx
+*_base64.txt
+AppPackages\**
+AppPackages

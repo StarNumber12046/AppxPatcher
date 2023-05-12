@@ -12,6 +12,30 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: 'recursive'
+    - name: setup msbuild
+      uses: microsoft/setup-msbuild@v1.3.1       
     - uses: microsoft/setup-msbuild@v1
     - name: Clear local NuGet cache (workaround for failed restores on windows-latest)
       run: dotnet nuget locals all --clear
+    - name: Build
+      run: MSBuild .\AppxPatch.sln /t:Rebuild /p:Configuration=Release
+    - name: Decode the Pfx
+      run: |
+        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.SIGNING_B64 }}")
+        $currentDirectory = Get-Location
+        $certificatePath = "cert.pfx"
+        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
+    - name: Build APPX
+      run: |
+        makeappx pack /d .\bin\x64\Release\ /p AppxPatcher.appx
+    - name: Sign APPX
+      run: |
+        SignTool sign /fd SHA256 /a /f $certificatePath /P ${{ secrets.CERT_PASSWORD }} AppxPatcher.appx
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+    # Artifact name
+        name: AppxPatcher # optional, default is artifact
+    # A file, directory or wildcard pattern that describes what to upload
+        path: AppxPatcher.appx
+    

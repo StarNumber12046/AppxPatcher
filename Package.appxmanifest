@@ -8,7 +8,7 @@
 
   <Identity
     Name="5b511df2-cb79-4123-8728-6d6d3a3e73bf"
-    Publisher="CN=franc"
+    Publisher="CN=starNumber, O=StarNumber, C=IT"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="5b511df2-cb79-4123-8728-6d6d3a3e73bf" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>

@@ -1,0 +1,17 @@
+on:
+  push:
+    tags: 
+      - v*
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      POWERSHELL_TELEMETRY_OPTOUT: 1
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - uses: microsoft/setup-msbuild@v1
+    - name: Clear local NuGet cache (workaround for failed restores on windows-latest)
+      run: dotnet nuget locals all --clear

@@ -18,7 +18,11 @@ jobs:
     - name: Clear local NuGet cache (workaround for failed restores on windows-latest)
       run: dotnet nuget locals all --clear
     - name: Build
-      run: MSBuild .\AppxPatch.sln /t:build /p:Configuration=Release
+      run: |
+        echo "Restoring packages"
+        MSBuild .\AppxPatch .sln /t:restore /p:RestorePackagesConfig=true
+        echo "Building..."
+        MSBuild .\AppxPatch.sln /t:build /p:Configuration=Release
     - name: Decode the Pfx
       run: |
         $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.SIGNING_B64 }}")
